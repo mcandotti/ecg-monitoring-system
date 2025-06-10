@@ -28,6 +28,8 @@ help:
 	@echo "  clean           - Clean project completely (containers, volumes, images)"
 	@echo "  shell-web       - Open shell in web container"
 	@echo "  shell-db        - Open shell in MySQL container"
+	@echo "  shell-python    - Open shell in Python ECG service container"
+	@echo "  logs-python     - Show Python ECG service logs"
 	@echo "  status          - Show container status"
 	@echo "  prune           - Remove unused containers and volumes"
 	@echo "  help            - Show this help"
@@ -77,6 +79,16 @@ shell-web:
 shell-db:
 	@echo "Opening shell in MySQL container..."
 	$(DOCKER_COMPOSE) exec mysql bash
+
+# Open shell in Python ECG service container
+shell-python:
+	@echo "Opening shell in Python ECG service container..."
+	$(DOCKER_COMPOSE) exec ecg-python bash
+
+# Show Python ECG service logs
+logs-python:
+	@echo "Python ECG service logs:"
+	$(DOCKER_COMPOSE) logs -f ecg-python
 
 # Show container status
 status:

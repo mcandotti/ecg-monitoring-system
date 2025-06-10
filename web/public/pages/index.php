@@ -73,8 +73,11 @@ try {
                                     <td class="text-center"><span class="badge bg-primary text-white"><?php echo $diagnostic['blood_type']; ?></span></td>
                                     <td class="text-center"><?php echo formatDate($diagnostic['created_at']); ?></td>
                                     <td class="text-center">
-                                        <a href="/pages/diagnostic.php?id=<?php echo $diagnostic['id']; ?>" class="btn btn-sm btn-primary">
+                                        <a href="/pages/diagnostic.php?id=<?php echo $diagnostic['id']; ?>" class="btn btn-sm btn-primary me-1">
                                             <i class="fas fa-eye"></i> Voir
+                                        </a>
+                                        <a href="/pages/diagnostic_details.php?id=<?php echo $diagnostic['id']; ?>" class="btn btn-sm btn-success">
+                                            <i class="fas fa-heartbeat"></i> ECG
                                         </a>
                                     </td>
                                 </tr>

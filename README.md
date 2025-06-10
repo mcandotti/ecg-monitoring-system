@@ -6,7 +6,9 @@ Un système complet pour la surveillance d'ECG (électrocardiogramme), conçu po
 
 Ce système fournit une solution complète pour la surveillance ECG avec les fonctionnalités suivantes :
 - Gestion des patients avec stockage sécurisé des données
-- Acquisition et configuration des données ECG
+- **Capture ECG en temps réel** avec contrôle start/stop via interface web
+- **Galerie d'images ECG** avec visualisation chronologique
+- **Service Python dédié** pour la gestion du capteur AD8232
 - Visualisation et analyse des données
 - Rapports de diagnostic médical
 - Contrôle d'accès basé sur les rôles (administrateur, médecin, patient)
@@ -15,8 +17,9 @@ Ce système fournit une solution complète pour la surveillance ECG avec les fon
 
 Le système se compose de :
 1. **Application Web** : Interface web basée sur PHP pour les utilisateurs
-2. **Base de données** : Base de données MySQL pour stocker les informations des patients, les données ECG et les diagnostics
-3. **Conteneurisation** : Configuration Docker pour un déploiement facile
+2. **Service Python ECG** : Service Flask pour la gestion du capteur AD8232 et la capture temps réel
+3. **Base de données** : Base de données MySQL pour stocker les informations des patients, les données ECG et les diagnostics
+4. **Conteneurisation** : Configuration Docker multi-services pour un déploiement facile
 
 ## Structure des Répertoires
 
@@ -25,7 +28,18 @@ ecg-monitoring-system/
 ├── .cursor/               # Configuration de l'éditeur Cursor
 ├── database/              # Fichiers d'initialisation de la base de données
 │   └── init.sql           # Schéma de base de données et données initiales
+├── docker/                # Configuration Docker
+│   └── python/            # Service Python ECG
+│       ├── Dockerfile     # Image Docker pour service Python
+│       └── requirements.txt # Dépendances Python
+├── scripts/               # Scripts Python pour ECG
+│   ├── ecg_service.py     # Service Flask principal
+│   ├── process_manager.py # Gestionnaire de processus
+│   ├── ecg_capture.py     # Logique de capture ECG
+│   └── database_manager.py # Gestionnaire base de données Python
 ├── web/                   # Code de l'application web
+│   ├── api/               # APIs REST
+│   │   └── ecg_control.php # API de contrôle ECG
 │   ├── config/            # Fichiers de configuration
 │   │   ├── database.php   # Gestion de la connexion à la base de données
 │   │   ├── env.php        # Gestion des variables d'environnement
@@ -37,14 +51,19 @@ ecg-monitoring-system/
 │   │   └── footer.php     # Modèle de pied de page commun
 │   └── public/            # Fichiers accessibles publiquement
 │       ├── css/           # Feuilles de style
+│       │   └── pages/     # Styles spécifiques aux pages
 │       ├── js/            # Fichiers JavaScript
+│       │   └── ecg-realtime.js # Contrôleur temps réel
 │       ├── pages/         # Pages de l'application
+│       │   ├── diagnostic_details.php # Page détails diagnostic avec capture
+│       │   ├── diagnostic.php # Page diagnostic
+│       │   └── index.php  # Page d'accueil
 │       ├── index.php      # Point d'entrée principal
 │       ├── login.php      # Page de connexion
 │       └── logout.php     # Gestionnaire de déconnexion
 ├── apache-config.conf     # Configuration du serveur Apache
 ├── docker-compose.yml     # Définition de la composition Docker
-├── Dockerfile             # Définition de l'image Docker
+├── Dockerfile             # Définition de l'image Docker web
 └── Makefile               # Commandes de construction et de gestion
 ```
 
@@ -91,6 +110,8 @@ Utilisez les commandes Makefile pour gérer le système :
 - `make logs` - Afficher les journaux des conteneurs
 - `make shell-web` - Ouvrir un shell dans le conteneur web
 - `make shell-db` - Ouvrir un shell dans le conteneur MySQL
+- `make shell-python` - Ouvrir un shell dans le conteneur du service Python ECG
+- `make logs-python` - Afficher les logs du service Python ECG
 - `make clean` - Arrêter et supprimer tous les conteneurs, volumes et images
 - `make help` - Afficher les informations d'aide
 
@@ -104,10 +125,19 @@ Le système protège les données sensibles des patients grâce au hachage et au
 ### Gestion des Données ECG
 
 Le système gère les données ECG via :
-1. Configuration des paramètres d'acquisition
-2. Capture et stockage des données
-3. Visualisation et analyse
-4. Rapports de diagnostic
+1. **Capture en temps réel** : Interface web pour démarrer/arrêter les sessions de capture
+2. **Service Python autonome** : Gestion du capteur AD8232 via GPIO/SPI
+3. **Stockage automatique** : Sauvegarde d'images ECG toutes les 5 secondes
+4. **Galerie interactive** : Visualisation chronologique avec zoom et téléchargement
+5. **Mise à jour temps réel** : Actualisation automatique pendant la capture
+
+### Nouvelles Fonctionnalités ECG
+
+- **Page de détails de diagnostic** : Interface dédiée pour chaque diagnostic
+- **Contrôles de capture** : Boutons start/stop avec indicateurs de statut
+- **Galerie d'images** : Vue grille/liste avec miniatures
+- **API REST** : Communication entre PHP et Python
+- **Conteneur Python séparé** : Service dédié avec accès GPIO
 
 ## Fonctionnalités de Sécurité
 
@@ -129,11 +159,17 @@ Lors du développement de nouvelles fonctionnalités :
 
 La base de données comprend des tables pour :
 - `patients` - Dossiers des patients avec données personnelles protégées
-- `configurations` - Configurations d'acquisition ECG
-- `ecg_data` - Valeurs réelles des signaux ECG
-- `diagnostics` - Diagnostics médicaux et mesures
+- `diagnostics` - Diagnostics médicaux liés aux patients
+- `ecg_data` - Images ECG stockées en BLOB avec métadonnées
+- `ecg_capture_sessions` - Sessions de capture avec statuts et compteurs
 - `users` - Utilisateurs du système et authentification
 - `remember_tokens` - Jetons de persistance de session
+
+### Modifications de Structure
+
+- **Suppression de `configurations`** : Simplification vers patients → diagnostics → ecg_data
+- **Ajout de `ecg_capture_sessions`** : Suivi des sessions de capture temps réel
+- **Modification de `ecg_data`** : Stockage d'images PNG au lieu de valeurs brutes
 
 ## Licence
 

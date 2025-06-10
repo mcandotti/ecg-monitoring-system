@@ -279,8 +279,11 @@ try {
                                     <td class="text-center"><?php echo formatDate($d['created_at']); ?></td>
                                     <td class="text-center"><span class="badge bg-primary text-white"><?php echo $d['blood_type']; ?></span></td>
                                     <td class="text-center">
-                                        <a href="?id=<?php echo $d['id']; ?>" class="btn btn-sm btn-primary">
+                                        <a href="?id=<?php echo $d['id']; ?>" class="btn btn-sm btn-primary me-1">
                                             <i class="fas fa-eye" style="margin:0px;"></i>
+                                        </a>
+                                        <a href="/pages/diagnostic_details.php?id=<?php echo $d['id']; ?>" class="btn btn-sm btn-success">
+                                            <i class="fas fa-heartbeat" style="margin:0px;"></i>
                                         </a>
                                     </td>
                                 </tr>
