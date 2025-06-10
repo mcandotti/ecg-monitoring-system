@@ -1,0 +1,226 @@
+/*
+ * Configuration Page Styles
+ * Specific styles for the ECG configuration page
+ */
+
+.config-header {
+  margin-bottom: var(--spacing-6);
+}
+
+.config-card {
+  margin-bottom: var(--spacing-6);
+}
+
+.config-section {
+  border-bottom: 1px solid var(--color-gray-200);
+  padding-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.config-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.section-title {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-3);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+}
+
+.section-title i {
+  margin-right: var(--spacing-2);
+}
+
+.section-subtitle {
+  color: var(--color-gray-600);
+  margin-bottom: var(--spacing-4);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .form-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .form-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.form-row-2-col {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .form-row-2-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.patient-info-summary {
+  background-color: var(--color-gray-50);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.patient-info-row {
+  display: flex;
+  margin-bottom: var(--spacing-2);
+}
+
+.patient-info-label {
+  font-weight: var(--font-weight-medium);
+  width: 150px;
+  flex-shrink: 0;
+}
+
+.patient-info-value {
+  flex: 1;
+}
+
+.acquisition-params {
+  margin-bottom: var(--spacing-4);
+}
+
+.param-group {
+  margin-bottom: var(--spacing-4);
+}
+
+.param-label {
+  display: block;
+  margin-bottom: var(--spacing-2);
+  font-weight: var(--font-weight-medium);
+}
+
+.param-help {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
+  margin-top: var(--spacing-1);
+}
+
+.config-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-6);
+}
+
+.duration-slider {
+  width: 100%;
+  margin-bottom: var(--spacing-3);
+}
+
+.duration-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+}
+
+.sampling-options {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-3);
+}
+
+@media (min-width: 768px) {
+  .sampling-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .sampling-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sampling-option {
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-3);
+  cursor: pointer;
+  transition: background-color var(--transition-normal) ease-in-out,
+              border-color var(--transition-normal) ease-in-out;
+}
+
+.sampling-option:hover {
+  background-color: var(--color-gray-50);
+}
+
+.sampling-option.selected {
+  border-color: var(--color-primary);
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.sampling-option-title {
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-1);
+}
+
+.sampling-option-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+}
+
+.template-section {
+  margin-top: var(--spacing-6);
+}
+
+.template-list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .template-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.template-item {
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-3);
+  cursor: pointer;
+  transition: transform var(--transition-normal) ease-in-out,
+              box-shadow var(--transition-normal) ease-in-out;
+}
+
+.template-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.template-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-2);
+}
+
+.template-name {
+  font-weight: var(--font-weight-medium);
+}
+
+.template-date {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
+} 

@@ -1,0 +1,20 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# ECG Monitoring System Overview
+
+This project implements a complete cardiac monitoring system (ECG) using an AD8232 sensor connected to a Raspberry Pi, with web servers for configuration, acquisition, visualization, and diagnosis.
+
+## Project Structure
+
+- [docker-compose.yml](mdc:docker-compose.yml): Docker configuration for the whole system
+- [Dockerfile](mdc:Dockerfile): Web server container configuration
+- [database/init.sql](mdc:database/init.sql): Database schema initialization
+
+### Web Application Structure:
+- [web/public/index.php](mdc:web/public/index.php): Main entry point for the web application
+- [web/includes/functions.php](mdc:web/includes/functions.php): Common utility functions
+- [web/config/database.php](mdc:web/config/database.php): Database connection functions
+- [web/config/security.php](mdc:web/config/security.php): Security functions for data protection

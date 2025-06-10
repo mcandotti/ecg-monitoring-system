@@ -1,0 +1,51 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecg_web_server
+    ports:
+      - "${WEB_PORT:-80}:80"
+    volumes:
+      - ./web:/var/www/html
+    environment:
+      - DB_HOST=${DB_HOST:-mysql}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-ecg_database}
+      - DB_USER=${DB_USER:-ecg_user}
+      - DB_PASSWORD=${DB_PASSWORD:-secure_password}
+      - HASH_KEY=${HASH_KEY:-test2025}
+      - DEBUG=${DEBUG:-false}
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    container_name: ecg_mysql
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_secure_password
+      - MYSQL_DATABASE=${DB_NAME:-ecg_database}
+      - MYSQL_USER=${DB_USER:-ecg_user}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-secure_password}
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ecg_phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=${DB_PORT:-3306}
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data: 

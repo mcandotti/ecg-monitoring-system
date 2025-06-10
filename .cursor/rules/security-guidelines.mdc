@@ -1,0 +1,30 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Security Guidelines
+
+This project deals with sensitive medical data and follows strict security practices.
+
+## Patient Data Protection
+- Patient identifiable data is protected using encryption/encoding methods in [web/config/security.php](mdc:web/config/security.php)
+- Names and security numbers are both hashed and encoded
+- Use the existing security functions for any new sensitive data
+
+## Authentication System
+- Authentication system is defined in [web/includes/auth.php](mdc:web/includes/auth.php)
+- Three user roles: admin, medecin (doctor), patient
+- Password hashing is used for secure storage
+- Remember-me tokens are implemented with secure expiration
+
+## Environment Variables
+- Environmental configuration handled in [web/config/env.php](mdc:web/config/env.php)
+- Sensitive values like database credentials and hash keys should be set via environment variables
+- Default values are provided in docker-compose.yml but should be overridden in production
+
+## Best Practices
+- Always validate user input
+- Use prepared statements for database queries
+- Follow the principle of least privilege for database operations
+- Keep sensitive data encrypted or hashed as appropriate

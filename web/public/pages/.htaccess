@@ -1,0 +1,17 @@
+# Enforce authentication for all pages in this directory
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Include the auth.php file for all PHP files in this directory
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^(.+\.php)$ $1 [E=INCLUDE_AUTH:1,L]
+</IfModule>
+
+# Use PHP auto_prepend to include the auth.php file
+<IfModule mod_php7.c>
+    php_value auto_prepend_file "../../includes/auth.php"
+</IfModule>
+
+<IfModule mod_php.c>
+    php_value auto_prepend_file "../../includes/auth.php"
+</IfModule> 

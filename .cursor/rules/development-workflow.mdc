@@ -1,0 +1,33 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Development Workflow
+
+## Setting Up the Project
+1. Use [Makefile](mdc:Makefile) commands to manage the project
+2. Start with `make setup` to create the environment file
+3. Then `make build` to build Docker images
+4. Finally `make up` to start containers
+
+## Key Commands
+- `make up` - Start containers
+- `make down` - Stop containers  
+- `make restart` - Restart containers
+- `make logs` - View logs
+- `make shell-web` - Access web container shell
+- `make shell-db` - Access database container shell
+- `make backup` - Backup the database
+- `make clean` - Clean project completely
+
+## Database Management
+- Database schema defined in [database/init.sql](mdc:database/init.sql)
+- PHPMyAdmin available at http://localhost:8080
+- MySQL directly accessible via `make shell-db`
+
+## Adding New Features
+- Web application code is in the `web` directory
+- New pages should be added to [web/public/pages/](mdc:web/public/pages)
+- Follow the existing authentication pattern in [web/includes/auth.php](mdc:web/includes/auth.php)
+- Use security functions from [web/config/security.php](mdc:web/config/security.php) for sensitive data

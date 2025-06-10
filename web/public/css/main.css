@@ -1,0 +1,163 @@
+/*
+ * Main Styles
+ * General styles for the ECG monitoring system
+ */
+
+/* Import base styles */
+@import url('reset.css');
+@import url('variables.css');
+@import url('layout.css');
+@import url('components.css');
+@import url('navbar.css');
+@import url('footer.css');
+@import url('utilities.css');
+
+/* Body setup */
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  color: var(--body-color);
+  background-color: var(--body-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography base styles */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: var(--spacing-3);
+  font-family: var(--font-family-headings);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  color: var(--color-gray-900);
+}
+
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-base); }
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-4);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-normal) ease-in-out;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+i {
+    margin-right: var(--spacing-3);
+}
+
+input[type="checkbox"], label {
+    cursor: pointer;
+}
+
+/* ECG Chart specific styles */
+.ecg-chart-container {
+  width: 100%;
+  height: 300px;
+  margin-bottom: var(--spacing-6);
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-4);
+}
+
+/* Blood type badge styling */
+.blood-type-badge {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--border-radius-full);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  background-color: var(--color-danger-light);
+  color: var(--color-white);
+}
+
+.blood-type-badge.a-pos, .blood-type-badge.a-neg {
+  background-color: var(--color-primary);
+}
+
+.blood-type-badge.b-pos, .blood-type-badge.b-neg {
+  background-color: var(--color-info);
+}
+
+.blood-type-badge.ab-pos, .blood-type-badge.ab-neg {
+  background-color: var(--color-secondary);
+}
+
+.blood-type-badge.o-pos, .blood-type-badge.o-neg {
+  background-color: var(--color-success);
+}
+
+/* Page specific content styles */
+.page-header {
+  margin-bottom: var(--spacing-6);
+}
+
+.page-title {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-2);
+}
+
+.page-subtitle {
+  color: var(--color-gray-600);
+  font-size: var(--font-size-lg);
+}
+
+/* Responsive adaptations */
+@media (max-width: 767px) {
+  .ecg-chart-container {
+    height: 200px;
+  }
+  
+  .page-header {
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .page-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .page-subtitle {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    font-size: 12pt;
+  }
+  
+  .ecg-chart-container {
+    height: 200px;
+    page-break-inside: avoid;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+} 

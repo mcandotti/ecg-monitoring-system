@@ -1,0 +1,388 @@
+/*
+ * UI Components
+ * Custom components to replace Bootstrap UI elements
+ */
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  transition: color var(--transition-normal) ease-in-out,
+              background-color var(--transition-normal) ease-in-out,
+              border-color var(--transition-normal) ease-in-out,
+              box-shadow var(--transition-normal) ease-in-out;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+}
+
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn i {
+  margin-right: var(--spacing-2);
+}
+
+/* Button variants */
+.btn-primary {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  color: var(--color-white);
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.btn-secondary:hover {
+  color: var(--color-white);
+  background-color: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+}
+
+.btn-success {
+  color: var(--color-white);
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.btn-success:hover {
+  color: var(--color-white);
+  background-color: var(--color-success-dark);
+  border-color: var(--color-success-dark);
+}
+
+.btn-danger {
+  color: var(--color-white);
+  background-color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.btn-danger:hover {
+  color: var(--color-white);
+  background-color: var(--color-danger-dark);
+  border-color: var(--color-danger-dark);
+}
+
+.btn-warning {
+  color: var(--color-gray-900);
+  background-color: var(--color-warning);
+  border-color: var(--color-warning);
+}
+
+.btn-warning:hover {
+  color: var(--color-gray-900);
+  background-color: var(--color-warning-dark);
+  border-color: var(--color-warning-dark);
+}
+
+.btn-outline-primary {
+  color: var(--color-primary);
+  background-color: transparent;
+  border-color: var(--color-primary);
+}
+
+.btn-outline-primary:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* Button sizes */
+.btn-sm {
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--font-size-sm);
+  border-radius: var(--border-radius-sm);
+}
+
+.btn-lg {
+  padding: var(--spacing-3) var(--spacing-6);
+  font-size: var(--font-size-lg);
+  border-radius: var(--border-radius-lg);
+}
+
+/* Cards */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: var(--color-white);
+  background-clip: border-box;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: var(--spacing-5);
+}
+
+.card-header {
+  padding: var(--spacing-3) var(--spacing-4);
+  margin-bottom: 0;
+  background-color: var(--color-gray-50);
+  border-bottom: 1px solid var(--color-gray-200);
+  font-weight: var(--font-weight-semibold);
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: var(--spacing-4);
+}
+
+.card-footer {
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--color-gray-50);
+  border-top: 1px solid var(--color-gray-200);
+}
+
+.card-title {
+  margin-bottom: var(--spacing-2);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.card-subtitle {
+  margin-top: calc(-1 * var(--spacing-1));
+  margin-bottom: var(--spacing-2);
+  color: var(--color-gray-600);
+}
+
+.card-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: var(--spacing-4);
+}
+
+.form-label {
+  display: inline-block;
+  margin-bottom: var(--spacing-2);
+  font-weight: var(--font-weight-medium);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  color: var(--color-gray-900);
+  background-color: var(--color-white);
+  background-clip: padding-box;
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius);
+  transition: border-color var(--transition-normal) ease-in-out, 
+              box-shadow var(--transition-normal) ease-in-out;
+}
+
+.form-control:focus {
+  border-color: var(--color-primary-light);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.25);
+}
+
+.form-control::placeholder {
+  color: var(--color-gray-500);
+  opacity: 1;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: var(--color-gray-100);
+  opacity: 1;
+}
+
+.form-select {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  padding-right: calc(0.75em + 1.5rem);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+  color: var(--color-gray-900);
+  background-color: var(--color-white);
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-3) center;
+  background-size: 16px 12px;
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius);
+  appearance: none;
+}
+
+.form-check {
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 1.5em;
+  margin-bottom: var(--spacing-2);
+}
+
+.form-check-input {
+  float: left;
+  margin-left: -1.5em;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.25em;
+  vertical-align: top;
+  appearance: none;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-400);
+}
+
+.form-check-input[type="checkbox"] {
+  border-radius: 0.25em;
+}
+
+.form-check-input[type="radio"] {
+  border-radius: 50%;
+}
+
+.form-check-input:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* Alerts */
+.alert {
+  position: relative;
+  padding: var(--spacing-3) var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+}
+
+.alert-success {
+  color: var(--color-success-dark);
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.alert-danger {
+  color: var(--color-danger-dark);
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.25);
+}
+
+.alert-warning {
+  color: var(--color-warning-dark);
+  background-color: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+.alert-info {
+  color: var(--color-info-dark);
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+/* Tables */
+.table {
+  width: 100%;
+  margin-bottom: var(--spacing-4);
+  color: var(--color-gray-900);
+  vertical-align: top;
+  border-color: var(--color-gray-200);
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-3);
+  vertical-align: middle;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid var(--color-gray-300);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-700);
+  background-color: var(--color-gray-50);
+}
+
+.table tbody tr:hover {
+  background-color: var(--color-gray-50);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: var(--border-radius-full);
+}
+
+.badge-primary {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.badge-secondary {
+  color: var(--color-white);
+  background-color: var(--color-secondary);
+}
+
+.badge-success {
+  color: var(--color-white);
+  background-color: var(--color-success);
+}
+
+.badge-danger {
+  color: var(--color-white);
+  background-color: var(--color-danger);
+}
+
+.badge-warning {
+  color: var(--color-gray-900);
+  background-color: var(--color-warning);
+}
+
+.badge-info {
+  color: var(--color-white);
+  background-color: var(--color-info);
+}
+
+/* Blood type badge from the original CSS */
+.blood-type-badge {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 20px;
+  display: inline-block;
+} 

@@ -1,0 +1,31 @@
+# Enable rewriting
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Allow direct access to login.php and logout.php
+    RewriteRule ^public/login\.php$ public/login.php [L]
+    RewriteRule ^public/logout\.php$ public/logout.php [L]
+    RewriteRule ^public/css/(.*)$ public/css/$1 [L]
+    RewriteRule ^public/js/(.*)$ public/js/$1 [L]
+    
+    # Route other pages through auth_check.php by prepending a PHP include directive
+    RewriteCond %{REQUEST_URI} !^/public/login\.php
+    RewriteCond %{REQUEST_URI} !^/public/logout\.php
+    RewriteCond %{REQUEST_URI} !^/public/css/
+    RewriteCond %{REQUEST_URI} !^/public/js/
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^public/(.+\.php)$ public/$1 [L]
+    
+    # If the URI doesn't point to a file or directory in /public, 
+    # redirect to the equivalent path in /public
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /public/$1 [L]
+</IfModule>
+
+# Set security options
+Options FollowSymLinks
+
+# Prevent directory listing
+Options -Indexes 

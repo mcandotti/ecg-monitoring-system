@@ -1,0 +1,70 @@
+/*
+ * Footer
+ * Custom footer styles for ECG monitoring system
+ */
+
+.footer {
+  background-color: transparent;
+  border-top: 1px solid var(--color-gray-200);
+  color: var(--color-white);
+  padding: var(--spacing-4) 0;
+  margin-top: auto; /* Push footer to the bottom */
+  flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand {
+  color: var(--color-gray-700);
+  font-weight: var(--font-weight-medium);
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+
+.footer-link {
+  color: var(--color-primary);
+  margin-left: var(--spacing-4);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color var(--transition-normal) ease-in-out;
+}
+
+.footer-link:hover {
+  color: var(--color-primary-dark);
+}
+
+.footer-link i {
+  margin-right: var(--spacing-2);
+}
+
+.footer-copyright {
+  color: var(--color-gray-500);
+}
+
+@media (max-width: 767px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-links {
+    margin-top: var(--spacing-4);
+  }
+  
+  .footer-link {
+    margin: 0 var(--spacing-2);
+  }
+  
+  .footer-copyright {
+    margin-top: var(--spacing-4);
+  }
+} 

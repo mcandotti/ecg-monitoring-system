@@ -1,0 +1,430 @@
+/*
+ * Diagnostic Page Styles
+ * Specific styles for the ECG diagnostic page
+ */
+
+.diagnostic-header {
+  margin-bottom: var(--spacing-6);
+}
+
+.patient-card {
+  margin-bottom: var(--spacing-6);
+}
+
+.patient-info-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
+}
+
+.patient-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--color-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-2xl);
+  color: var(--color-gray-600);
+  margin-right: var(--spacing-4);
+  flex-shrink: 0;
+}
+
+.patient-details {
+  flex: 1;
+}
+
+.patient-name {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-1);
+}
+
+.patient-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+  color: var(--color-gray-600);
+  font-size: var(--font-size-sm);
+}
+
+.patient-meta-item {
+  display: flex;
+  align-items: center;
+}
+
+.patient-meta-item i {
+  margin-right: var(--spacing-1);
+}
+
+.ecg-data-container {
+  margin-bottom: var(--spacing-6);
+}
+
+.ecg-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+  background-color: var(--color-gray-50);
+  padding: var(--spacing-3);
+  border-radius: var(--border-radius);
+}
+
+.waves-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+}
+
+@media (min-width: 768px) {
+  .waves-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .waves-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.wave-card {
+  height: 100%;
+}
+
+.wave-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wave-title {
+  font-weight: var(--font-weight-semibold);
+  display: flex;
+  align-items: center;
+}
+
+.wave-title i {
+  margin-right: var(--spacing-2);
+  color: var(--color-primary);
+}
+
+.wave-controls {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.wave-visualization {
+  height: 150px;
+  margin: var(--spacing-3) 0;
+  background-color: var(--color-gray-50);
+  border-radius: var(--border-radius);
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-measurements {
+  font-size: var(--font-size-sm);
+}
+
+.measurement-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-1) 0;
+  border-bottom: 1px dashed var(--color-gray-200);
+}
+
+.measurement-row:last-child {
+  border-bottom: none;
+}
+
+.measurement-label {
+  color: var(--color-gray-600);
+}
+
+.measurement-value {
+  font-weight: var(--font-weight-medium);
+}
+
+.diagnostic-section {
+  margin-bottom: var(--spacing-6);
+}
+
+.diagnostic-title {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-4);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+}
+
+.diagnostic-title i {
+  margin-right: var(--spacing-2);
+}
+
+.diagnostic-form {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow);
+}
+
+.diagnostic-group {
+  margin-bottom: var(--spacing-4);
+}
+
+.diagnostic-label {
+  display: block;
+  margin-bottom: var(--spacing-2);
+  font-weight: var(--font-weight-medium);
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.diagnostic-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-6);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--color-gray-200);
+}
+
+.measurements-table {
+  width: 100%;
+  margin-bottom: var(--spacing-4);
+}
+
+.measurements-table th {
+  text-align: left;
+  color: var(--color-gray-700);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-bottom: 2px solid var(--color-gray-200);
+  background-color: var(--color-gray-50);
+}
+
+.measurements-table td {
+  padding: var(--spacing-2) var(--spacing-3);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.measurements-table tr:last-child td {
+  border-bottom: none;
+}
+
+.measurements-table .abnormal {
+  color: var(--color-danger);
+  font-weight: var(--font-weight-medium);
+}
+
+.measurements-table .normal {
+  color: var(--color-success);
+}
+
+.report-card {
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-3);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.report-title {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+}
+
+.report-date {
+  color: var(--color-gray-500);
+  font-size: var(--font-size-sm);
+}
+
+.report-content {
+  margin-bottom: var(--spacing-3);
+}
+
+.report-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+}
+
+.report-doctor {
+  font-weight: var(--font-weight-medium);
+}
+
+.print-section {
+  margin-top: var(--spacing-6);
+  text-align: center;
+}
+
+/* ECG Visualization Specific Styles */
+.ecg-visualization {
+  background: var(--color-gray-50);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow);
+  margin-bottom: var(--spacing-6);
+}
+
+.ecg-visualization h3 {
+  margin-bottom: var(--spacing-3);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Wave markers and indicators */
+.wave-marker {
+  position: absolute;
+  border-left: 2px dashed;
+  height: 100%;
+  top: 0;
+  z-index: 5;
+}
+
+.wave-marker.p-wave { border-color: var(--color-success); }
+.wave-marker.q-wave { border-color: var(--color-danger); }
+.wave-marker.r-wave { border-color: var(--color-warning); }
+.wave-marker.s-wave { border-color: var(--color-info); }
+.wave-marker.t-wave { border-color: var(--color-secondary); }
+
+.wave-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-2);
+  padding: var(--spacing-2);
+  background-color: var(--color-gray-100);
+  border-radius: var(--border-radius);
+}
+
+.wave-indicator .wave-label {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+}
+
+.wave-indicator .wave-value {
+  font-family: monospace;
+  color: var(--color-primary);
+}
+
+/* Wave info cards */
+.waves-info-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+}
+
+.wave-info-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-3);
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid;
+}
+
+.wave-info-card.p-wave { border-left-color: var(--color-success); }
+.wave-info-card.q-wave { border-left-color: var(--color-danger); }
+.wave-info-card.r-wave { border-left-color: var(--color-warning); }
+.wave-info-card.s-wave { border-left-color: var(--color-info); }
+.wave-info-card.t-wave { border-left-color: var(--color-secondary); }
+
+.wave-info-card h5 {
+  margin-bottom: var(--spacing-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.wave-info-card .value {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Medical report section */
+.medical-report {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-4);
+  margin-top: var(--spacing-4);
+}
+
+.medical-report h4 {
+  color: var(--color-gray-700);
+  border-bottom: 2px solid var(--color-gray-200);
+  padding-bottom: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
+}
+
+.doctor-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-3);
+}
+
+/* Print button */
+.print-button {
+  margin-top: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+}
+
+/* Print styles */
+@media print {
+  body {
+    background-color: var(--color-white);
+  }
+  
+  .diagnostic-header,
+  .ecg-controls,
+  .diagnostic-actions,
+  .print-section,
+  .wave-controls {
+    display: none !important;
+  }
+  
+  .card {
+    box-shadow: none !important;
+    border: 1px solid var(--color-gray-300) !important;
+    margin-bottom: var(--spacing-4) !important;
+  }
+  
+  .waves-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .wave-visualization {
+    border: 1px solid var(--color-gray-300) !important;
+  }
+  
+  .ecg-visualization {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid var(--color-gray-300);
+  }
+  
+  .medical-report {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid var(--color-gray-300);
+  }
+  
+  .wave-info-card {
+    box-shadow: none;
+    border: 1px solid var(--color-gray-200);
+  }
+} 
