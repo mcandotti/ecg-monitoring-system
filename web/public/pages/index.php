@@ -5,22 +5,23 @@ $extraCss = "/css/pages/index.css";
 // La session est déjà démarrée par auth.php
 include_once '../../includes/header.php';
 
-// Récupération des configurations récentes
+// Récupération des diagnostics récents
 require_once '../../config/database.php';
 require_once '../../config/security.php';
+require_once '../../includes/functions.php';
 
 try {
-    $sql = "SELECT c.id, c.acquisition_time, c.config_date, 
-                p.id as patient_id, p.name_encoded, p.phone, p.blood_type
-            FROM configurations c
-            JOIN patients p ON c.patient_id = p.id
-            ORDER BY c.config_date DESC
+    $sql = "SELECT d.id, d.patient_id, d.created_at,
+                p.name_encoded, p.phone, p.blood_type
+            FROM diagnostics d
+            JOIN patients p ON d.patient_id = p.id
+            ORDER BY d.created_at DESC
             LIMIT 5";
     
-    $configurations = fetchAll($sql);
+    $diagnostics = fetchAll($sql);
 } catch (Exception $e) {
-    $configurations = [];
-    $_SESSION['error'] = 'Erreur lors de la récupération des configurations: ' . ($DEBUG ? $e->getMessage() : 'Contactez l\'administrateur');
+    $diagnostics = [];
+    $_SESSION['error'] = 'Erreur lors de la récupération des diagnostics: ' . ($DEBUG ? $e->getMessage() : 'Contactez l\'administrateur');
 }
 ?>
 
@@ -29,7 +30,7 @@ try {
         <div class="jumbotron">
             <h1 class="display-4">Système de Monitoring ECG</h1>
             <p class="lead">Bienvenue dans l'application de monitoring cardiaque basée sur Raspberry Pi et le capteur AD8232.</p>
-            <p>Ce système permet de configurer, acquérir, visualiser et diagnostiquer des signaux ECG.</p>
+            <p>Ce système permet d'acquérir, visualiser et diagnostiquer des signaux ECG.</p>
             <hr class="my-4">
         </div>
     </div>
@@ -39,16 +40,16 @@ try {
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-history mr-2"></i>Configurations récentes</h3>
+                <h3 class="card-title"><i class="fas fa-history mr-2"></i>Diagnostics récents</h3>
             </div>
             <div class="card-body">
-                <?php if (empty($configurations)): ?>
+                <?php if (empty($diagnostics)): ?>
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle me-2"></i>
-                        Aucune configuration n'a encore été enregistrée.
+                        Aucun diagnostic n'a encore été enregistré.
                         <div class="mt-2">
-                            <a href="/pages/configuration.php" class="btn btn-sm btn-primary">
-                                <i class="fas fa-plus me-1"></i>Créer une configuration
+                            <a href="/pages/diagnostic.php" class="btn btn-sm btn-primary">
+                                <i class="fas fa-plus me-1"></i>Créer un diagnostic
                             </a>
                         </div>
                     </div>
@@ -60,22 +61,20 @@ try {
                                     <th>ID</th>
                                     <th>Patient</th>
                                     <th>Groupe sanguin</th>
-                                    <th>Durée</th>
                                     <th>Date</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($configurations as $config): ?>
+                                <?php foreach ($diagnostics as $diagnostic): ?>
                                 <tr>
-                                    <td class="text-center"><?php echo $config['id']; ?></td>
-                                    <td class="text-center"><?php echo decodeBase64($config['name_encoded']); ?></td>
-                                    <td class="text-center"><span class="badge bg-primary text-white"><?php echo $config['blood_type']; ?></span></td>
-                                    <td class="text-center"><?php echo $config['acquisition_time']; ?> s</td>
-                                    <td class="text-center"><?php echo formatDate($config['config_date']); ?></td>
+                                    <td class="text-center"><?php echo $diagnostic['id']; ?></td>
+                                    <td class="text-center"><?php echo decodeBase64($diagnostic['name_encoded']); ?></td>
+                                    <td class="text-center"><span class="badge bg-primary text-white"><?php echo $diagnostic['blood_type']; ?></span></td>
+                                    <td class="text-center"><?php echo formatDate($diagnostic['created_at']); ?></td>
                                     <td class="text-center">
-                                        <a href="/pages/diagnostic.php?config_id=<?php echo $config['id']; ?>" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-stethoscope"></i> Diagnostic
+                                        <a href="/pages/diagnostic.php?id=<?php echo $diagnostic['id']; ?>" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-eye"></i> Voir
                                         </a>
                                     </td>
                                 </tr>
@@ -122,12 +121,12 @@ try {
             <div class="card-body">
                 <ol>
                     <li>
-                        <strong>Configuration :</strong> 
-                        <p>Créez une nouvelle configuration en renseignant les informations du patient.</p>
+                        <strong>Enregistrement patient :</strong> 
+                        <p>Enregistrez les informations du patient dans le système.</p>
                     </li>
                     <li>
                         <strong>Acquisition :</strong> 
-                        <p>Connectez les électrodes et lancez l'acquisition pendant la durée configurée.</p>
+                        <p>Connectez les électrodes et lancez l'acquisition pour la durée souhaitée.</p>
                     </li>
                     <li>
                         <strong>Visualisation :</strong> 
@@ -138,7 +137,7 @@ try {
                         <p>Entrez vos observations et diagnostics pour les sauvegarder dans le système.</p>
                     </li>
                 </ol>
-                <a href="/pages/configuration.php" class="btn btn-success mt-3">
+                <a href="/pages/diagnostic.php" class="btn btn-success mt-3">
                     <i class="fas fa-play me-1"></i>Commencer
                 </a>
             </div>

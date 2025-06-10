@@ -16,9 +16,39 @@ services:
       - DB_PASSWORD=${DB_PASSWORD:-secure_password}
       - HASH_KEY=${HASH_KEY:-test2025}
       - DEBUG=${DEBUG:-false}
+      - ECG_SERVICE_URL=http://ecg-python:5000
+    depends_on:
+      - mysql
+      - ecg-python
+    restart: unless-stopped
+    networks:
+      - ecg-network
+
+  ecg-python:
+    build:
+      context: docker/python
+      dockerfile: Dockerfile
+    container_name: ecg_python_service
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./scripts:/app
+    environment:
+      - DB_HOST=${DB_HOST:-mysql}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-ecg_database}
+      - DB_USER=${DB_USER:-ecg_user}
+      - DB_PASSWORD=${DB_PASSWORD:-secure_password}
+      - FLASK_ENV=production
+    devices:
+      - "/dev/gpiomem:/dev/gpiomem"
+      - "/dev/spidev0.0:/dev/spidev0.0"
+    privileged: true
     depends_on:
       - mysql
     restart: unless-stopped
+    networks:
+      - ecg-network
 
   mysql:
     image: mysql:8.0
@@ -34,6 +64,8 @@ services:
       - MYSQL_USER=${DB_USER:-ecg_user}
       - MYSQL_PASSWORD=${DB_PASSWORD:-secure_password}
     restart: unless-stopped
+    networks:
+      - ecg-network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -46,6 +78,12 @@ services:
     depends_on:
       - mysql
     restart: unless-stopped
+    networks:
+      - ecg-network
 
 volumes:
-  mysql_data: 
+  mysql_data:
+
+networks:
+  ecg-network:
+    driver: bridge 

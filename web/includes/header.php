@@ -43,9 +43,6 @@ $pageTitle = isset($pageTitle) ? $pageTitle : 'Système de Monitoring ECG';
                         <a class="nav-link" href="/pages/index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/pages/configuration.php">Configuration</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/pages/diagnostic.php">Diagnostic</a>
                     </li>
                 </ul>
